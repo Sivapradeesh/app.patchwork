@@ -12,9 +12,19 @@ export default function BackgroundEffects() {
   const orb2Ref = useRef<HTMLDivElement>(null);
   const orb3Ref = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
+  const [particles, setParticles] = useState<{width: number, height: number, left: number, top: number}[]>([]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
+    setParticles(
+      [...Array(6)].map(() => ({
+        width: 3 + Math.random() * 4,
+        height: 3 + Math.random() * 4,
+        left: 10 + Math.random() * 80,
+        top: 10 + Math.random() * 80,
+      }))
+    );
   }, []);
 
   useGSAP(() => {
@@ -144,15 +154,15 @@ export default function BackgroundEffects() {
       />
 
       {/* Floating particles */}
-      {mounted && [...Array(6)].map((_, i) => (
+      {mounted && particles.map((p, i) => (
         <div
           key={i}
           className="particle absolute rounded-full bg-white/5 opacity-0"
           style={{
-            width: `${3 + Math.random() * 4}px`,
-            height: `${3 + Math.random() * 4}px`,
-            left: `${10 + Math.random() * 80}%`,
-            top: `${10 + Math.random() * 80}%`,
+            width: `${p.width}px`,
+            height: `${p.height}px`,
+            left: `${p.left}%`,
+            top: `${p.top}%`,
           }}
         />
       ))}

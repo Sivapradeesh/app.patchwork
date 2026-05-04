@@ -11,7 +11,7 @@ export interface FeatureProps {
   statLabel: string;
 }
 
-export default function FeatureCard({ feature, idx }: { feature: FeatureProps, idx: number }) {
+export default function FeatureCard({ feature }: { feature: FeatureProps }) {
   const cardRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {

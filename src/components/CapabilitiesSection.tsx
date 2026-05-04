@@ -81,7 +81,7 @@ export default function CapabilitiesSection() {
     );
 
     // Stagger list items inside each card after card appears
-    cards.forEach((card, i) => {
+    cards.forEach((card) => {
       const items = gsap.utils.toArray<HTMLElement>('li', card);
       gsap.fromTo(items,
         { opacity: 0, x: -10 },
